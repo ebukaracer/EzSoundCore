@@ -3,7 +3,7 @@
 
 **EzSoundCore** is a Unity package that provides a simple and efficient way to manage sound effects and music playback in your game. 
 
- [Read Docs](https://ebukaracer.github.io/EzSoundCore)
+ [View in DocFx](https://ebukaracer.github.io/EzSoundCore)
  
 ## Features  
 - Easy-to-use methods for playing, muting, and enabling/disabling audio sources.  
@@ -45,11 +45,11 @@ public class ExampleUsage : MonoBehaviour
 ```
 
 ## Samples and Best Practices
-After Installation, use the menu option `Racer > EzSoundCore > Import Elements` to import essential elements(scripts, prefabs) of this package to speed up workflow.
+After installation, use the menu option: `Racer > EzSoundCore > Import Elements` to import the prebuilt elements(prefabs) of this package, which will speed up your workflow. In the case of any updates to newer versions, use the menu option: `Racer > EzSoundCore > Import Elements(Force)`. 
 
-Check out this package's sample scene by importing it from the package manager *sample's tab* and exploring the scripts for the recommended approach for managing sound effects and music playback in your game.
+Optionally import this package's demo from the package manager's `Samples` tab.
 
-*To remove this package completely(leaving no trace), navigate to: `Racer > EzSoundCore > Remove package`*
+To remove this package completely(leaving no trace), navigate to: `Racer > EzSoundCore > Remove package`
 
 ## [Contributing](https://ebukaracer.github.io/ebukaracer/md/CONTRIBUTING.html) 
 Contributions are welcome! Please open an issue or submit a pull request.

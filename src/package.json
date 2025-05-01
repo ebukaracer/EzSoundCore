@@ -1,7 +1,7 @@
 {
   "name": "com.racer.ezsoundcore",
   "displayName": "EzSoundCore",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "unity": "2020.3",
   "description": "Provides a simple and efficient way to manage sound effects and music playback in your game",
   "documentationUrl": "https://ebukaracer.github.io/EzSoundCore",

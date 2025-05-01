@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using UnityEditor;
 using UnityEditor.PackageManager;
@@ -7,60 +6,49 @@ using UnityEngine;
 
 namespace Racer.EzSoundCore.Editor
 {
-    internal class EzSoundCoreEditor : EditorWindow
+    internal static class EzSoundCoreEditor
     {
         private static RemoveRequest _removeRequest;
         private static bool _isElementsImported;
         private const string PkgId = "com.racer.ezsoundcore";
+        private const string AssetPkgId = "EzSoundCore.unitypackage";
 
         private const string ContextMenuPath = "Racer/EzSoundCore/";
+        private const string ImportElementsContextMenuPath = ContextMenuPath + "Import Elements";
+        private const string ForceImportElementsContextMenuPath = ContextMenuPath + "Import Elements(Force)";
+
         private const string RootPath = "Assets/EzSoundCore";
         private const string SamplesPath = "Assets/Samples/EzSoundCore";
-        private static readonly string SourcePath = $"Packages/{PkgId}/Elements";
-        private const string ElementsPath = RootPath + "/Elements";
 
 
-        [MenuItem(ContextMenuPath + "Import Elements", false)]
+        [MenuItem(ImportElementsContextMenuPath, false)]
         private static void ImportElements()
         {
-            if (Directory.Exists(ElementsPath))
-            {
-                Debug.Log(
-                    $"Root directory already exists: '{ElementsPath}'" +
-                    "\nIf you would like to re-import, remove and reinstall this package.");
-                return;
-            }
+            var packagePath = $"Packages/{PkgId}/Elements/{AssetPkgId}";
 
-            if (!Directory.Exists(SourcePath))
-            {
-                Debug.LogError(
-                    "Source path is missing. Please ensure this package is installed correctly," +
-                    $" otherwise reinstall it.\nNonexistent Path: {SourcePath}");
-                return;
-            }
-
-            try
-            {
-                DirUtils.CreateDirectory(RootPath);
-                Directory.Move(SourcePath, ElementsPath);
-                DirUtils.DeleteEmptyMetaFiles(SourcePath);
-                AssetDatabase.Refresh();
-                _isElementsImported = AssetDatabase.IsValidFolder(ElementsPath);
-                Debug.Log($"Imported successfully at '{ElementsPath}'");
-            }
-            catch (Exception e)
-            {
-                Debug.LogError(
-                    $"An error occurred while importing this package's elements: {e.Message}\n{e.StackTrace}");
-            }
+            if (File.Exists(packagePath))
+                AssetDatabase.ImportPackage(packagePath, true);
+            else
+                EditorUtility.DisplayDialog("Missing Package File", $"{AssetPkgId} not found in the package.", "OK");
         }
 
+        [MenuItem(ForceImportElementsContextMenuPath, false)]
+        private static void ForceImportElements()
+        {
+            ImportElements();
+        }
 
-        [MenuItem(ContextMenuPath + "Import Elements", true)]
+        [MenuItem(ImportElementsContextMenuPath, true)]
         private static bool ValidateImportElements()
         {
-            _isElementsImported = AssetDatabase.IsValidFolder(ElementsPath);
+            _isElementsImported = AssetDatabase.IsValidFolder($"{RootPath}/Elements");
             return !_isElementsImported;
+        }
+
+        [MenuItem(ForceImportElementsContextMenuPath, true)]
+        private static bool ValidateForceImportElements()
+        {
+            return _isElementsImported;
         }
 
         [MenuItem(ContextMenuPath + "Remove Package(recommended)")]
@@ -103,20 +91,7 @@ namespace Racer.EzSoundCore.Editor
             DeleteEmptyMetaFiles(path);
         }
 
-        public static void CreateDirectory(string path)
-        {
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-        }
-
-        public static void MoveMetaFile(string source, string destination)
-        {
-            if (!File.Exists(source + ".meta")) return;
-
-            File.Move(source + ".meta", destination + ".meta");
-        }
-
-        public static void DeleteEmptyMetaFiles(string directory)
+        private static void DeleteEmptyMetaFiles(string directory)
         {
             if (Directory.Exists(directory)) return;
 
