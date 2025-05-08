@@ -1,5 +1,6 @@
 using System.Collections;
 using Racer.EzSoundCore.Core;
+using Racer.EzSoundCore.Utilities;
 using UnityEngine;
 
 namespace Racer.EzSoundCore.Samples
@@ -7,8 +8,6 @@ namespace Racer.EzSoundCore.Samples
     internal class IntervalSound : MonoBehaviour
     {
         private WaitForSeconds _delay;
-
-        [SerializeField] private AudioClip clip;
 
         private void Start()
         {
@@ -21,7 +20,9 @@ namespace Racer.EzSoundCore.Samples
             while (true)
             {
                 yield return _delay;
-                SoundCore.Instance.PlaySfx(clip);
+                
+                // Playing using a predefined ClipId
+                SoundCore.Instance.PlaySfx(ClipId._131660__bertrof__game_sound_correct);
             }
         }
     }

@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.IO;
 using UnityEditor;
 using UnityEditor.PackageManager;
@@ -73,7 +74,7 @@ namespace Racer.EzSoundCore.Editor
                     break;
                 }
                 case >= StatusCode.Failure:
-                    Debug.LogWarning($"Failed to remove package: '{PkgId}'");
+                    Debug.LogError($"Failed to remove package: '{PkgId}'");
                     break;
             }
 
@@ -102,3 +103,4 @@ namespace Racer.EzSoundCore.Editor
         }
     }
 }
+#endif

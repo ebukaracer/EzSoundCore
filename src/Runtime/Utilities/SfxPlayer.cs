@@ -13,13 +13,16 @@ namespace Racer.EzSoundCore.Utilities
         /// </summary>
         [SerializeField] private AudioClip clip;
 
-        
+
         /// <summary>
         /// Plays the assigned audio clip using the SoundCore instance.
         /// </summary>
         public void Play()
         {
             SoundCore.Instance.PlaySfx(clip);
+
+            // Alternatively, you can use a predefined ClipId if available
+            // SoundCore.Instance.PlaySfx(ClipId.clipIdHere);
         }
     }
 }

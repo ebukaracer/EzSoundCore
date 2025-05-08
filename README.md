@@ -5,19 +5,26 @@
 
  [View in DocFx](https://ebukaracer.github.io/EzSoundCore)
  
-## Features  
-- Easy-to-use methods for playing, muting, and enabling/disabling audio sources.  
-- Support for audio mixer snapshots.  
-- Editor utilities for importing and removing package elements.
+## Features
+- Easy-to-use methods for playing sounds  
+- Provides a quick and easy way to manage multiple audio sources
+- Support for audio mixer snapshots
+- Flexible utility for generating unique ID from audio-clips
 
 ## Installation
- *In unity editor inside package manager:*
-- Hit `(+)`, choose `Add package from Git URL`(Unity 2019.4+)
-- Paste the `URL` for this package inside the box: https://github.com/ebukaracer/EzSoundCore.git#upm
-- Hit `Add`
-- If you're using assembly definition in your project, be sure to add this package's reference under: `Assembly Definition References` or check out [this](https://ebukaracer.github.io/ebukaracer/md/SETUPGUIDE.html)
+_Inside the Unity Editor using the Package Manager:_
+- Click the **(+)** button in the Package Manager and select **"Add package from Git URL"** (requires Unity 2019.4 or later).
+-  Paste the Git URL of this package into the input box: https://github.com/ebukaracer/EzSoundCore.git#upm
+-  Click **Add** to install the package.
+-  If your project uses **Assembly Definitions**, make sure to add a reference to this package under **Assembly Definition References**. 
+    - For more help, see [this guide](https://ebukaracer.github.io/ebukaracer/md/SETUPGUIDE.html).
+
+## Setup
+After installation, use the menu option:  `Racer > EzSoundCore > Import Elements` to will import the prebuilt elements (prefabs) included in the package to help you get started quickly and streamline your workflow.
 
 ## Quick Usage
+After you have imported this package's **Elements**, locate **SoundCore** prefab and add it to your desired scene. 
+
 ```csharp
 using Racer.EzSoundCore.Core;
 using UnityEngine;
@@ -25,14 +32,16 @@ using UnityEngine;
 public class ExampleUsage : MonoBehaviour
 {
     [SerializeField] private AudioClip sfxClip;
-    [SerializeField] private AudioClip musicClip;
 
     private void Start()
     {
-        // Play sound effect
+        // Play sound via an assigned clip in the inspector
         SoundCore.Instance.PlaySfx(sfxClip);
 
-        // Play music
+	// Alternatively, play sound via a generated enum ID from the clip 
+	SoundCore.Instance.PlaySfx(ClipID.mysfxclip);
+
+        // Play music, the music should have been assigned in the audio source's clip field
         SoundCore.Instance.PlayMusic();
 
         // Mute all audio sources
@@ -45,11 +54,9 @@ public class ExampleUsage : MonoBehaviour
 ```
 
 ## Samples and Best Practices
-After installation, use the menu option: `Racer > EzSoundCore > Import Elements` to import the prebuilt elements(prefabs) of this package, which will speed up your workflow. In the case of any updates to newer versions, use the menu option: `Racer > EzSoundCore > Import Elements(Force)`. 
-
-Optionally import this package's demo from the package manager's `Samples` tab.
-
-To remove this package completely(leaving no trace), navigate to: `Racer > EzSoundCore > Remove package`
+- In the case of any updates to newer versions, use the menu option: `Racer > EzSoundCore > Import Elements(Force)` 
+- Optionally import this package's demo from the package manager's `Samples` tab.
+- To remove this package completely(leaving no trace), navigate to: `Racer > EzSoundCore > Remove package`
 
 ## [Contributing](https://ebukaracer.github.io/ebukaracer/md/CONTRIBUTING.html) 
 Contributions are welcome! Please open an issue or submit a pull request.
