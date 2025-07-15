@@ -20,9 +20,6 @@ namespace Racer.EzSoundCore.Utilities
         public void Play()
         {
             SoundCore.Instance.PlaySfx(clip);
-
-            // Alternatively, you can use a predefined ClipId if available
-            // SoundCore.Instance.PlaySfx(ClipId.clipIdHere);
         }
     }
 }

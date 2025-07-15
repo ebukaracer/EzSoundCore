@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 10
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -42,8 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
-  m_GIWorkflowMode: 1
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -66,9 +66,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -717,6 +714,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0827a4dbb6002674ca02a053e2c409e1, type: 3}
+  m_Resource: {fileID: 8300000, guid: 0827a4dbb6002674ca02a053e2c409e1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -836,6 +834,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1389,13 +1388,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0827a4dbb6002674ca02a053e2c409e1, type: 3}
   - {fileID: 8300000, guid: 1548f6d39d66e464d9c38de46cd4ca05, type: 3}
   - {fileID: 8300000, guid: 9933491f155edf9469b8b82ffc66a5e8, type: 3}
-  <MappedClipsData>k__BackingField:
-  - clip: {fileID: 8300000, guid: 0827a4dbb6002674ca02a053e2c409e1, type: 3}
-    id: _110215__cheesepuff__a_soothing_song_Tweak
-  - clip: {fileID: 8300000, guid: 1548f6d39d66e464d9c38de46cd4ca05, type: 3}
-    id: _131660__bertrof__game_sound_correct
-  - clip: {fileID: 8300000, guid: 9933491f155edf9469b8b82ffc66a5e8, type: 3}
-    id: _448081__breviceps__tic_toc_click
   audioClipsPath: 
 --- !u!222 &8985580067048990967
 CanvasRenderer:

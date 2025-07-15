@@ -20,35 +20,45 @@ _Inside the Unity Editor using the Package Manager:_
     - For more help, see [this guide](https://ebukaracer.github.io/ebukaracer/md/SETUPGUIDE.html).
 
 ## Setup
-After installation, use the menu option:  `Racer > EzSoundCore > Import Elements` to will import the prebuilt elements (prefabs) included in the package to help you get started quickly and streamline your workflow.
+After installation, use the menu option:  `Racer > EzSoundCore > Import Elements`\
+This will import the prebuilt elements (prefabs) included in the package to help you get started quickly and streamline your workflow.
 
 ## Quick Usage
-After you have imported this package's **Elements**, locate **SoundCore** prefab and add it to your desired scene. 
+- Ensure the `SoundCore` prefab or a GameObject containing the `SoundCore` component is present in the scene.
+- Use `SoundCore.Instance` to access the singleton instance of the class.
+- The `ClipID` enum is auto-generated. If you intend to play sound using that approach, first import the elements of this package, use the `SoundCore` prefab to generate it after adding audio clips to the list.
 
 ```csharp
-using Racer.EzSoundCore.Core;
 using UnityEngine;
+using Racer.EzSoundCore.Core;
 
 public class ExampleUsage : MonoBehaviour
 {
     [SerializeField] private AudioClip sfxClip;
+    [SerializeField] private AudioClip musicClip;
 
     private void Start()
     {
-        // Play sound via an assigned clip in the inspector
-        SoundCore.Instance.PlaySfx(sfxClip);
+        // Play a sound effect
+        SoundCore.Instance.PlaySfx(sfxClip, volumeScale: 0.8f);
 
-	// Alternatively, play sound via a generated enum ID from the clip 
-	SoundCore.Instance.PlaySfx(ClipID.mysfxclip);
-
-        // Play music, the music should have been assigned in the audio source's clip field
-        SoundCore.Instance.PlayMusic();
+        // Play music
+        SoundCore.Instance.PlayMusic(musicClip);
 
         // Mute all audio sources
-        SoundCore.Instance.MuteAllSources(true);
+        SoundCore.Instance.MuteAllSources(mute: true, ignoreIndex: true);
 
-        // Unmute all audio sources
-        SoundCore.Instance.MuteAllSources(false);
+	// Play a sound effect using ClipID(if generated)  
+	SoundCore.Instance.PlaySfx(ClipID.Explosion, volumeScale: 0.8f);  
+  
+	// Play music using ClipID (if generated) 
+	SoundCore.Instance.PlayMusic(ClipID.BackgroundMusic);
+
+        // Enable all audio sources
+        SoundCore.Instance.EnableAllSources(enable: true, ignoreIndex: true);
+
+        // Transition to a specific audio mixer snapshot
+        SoundCore.Instance.MuteAudioMixer(snapshotIndex: 0, timeToReach: 0.5f);
     }
 }
 ```

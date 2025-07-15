@@ -20,9 +20,9 @@ namespace Racer.EzSoundCore.Samples
             while (true)
             {
                 yield return _delay;
-                
+
                 // Playing using a predefined ClipId
-                SoundCore.Instance.PlaySfx(ClipId._131660__bertrof__game_sound_correct);
+                // SoundCore.Instance.PlaySfx(ClipID._131660__bertrof__game_sound_correct);
             }
         }
     }
